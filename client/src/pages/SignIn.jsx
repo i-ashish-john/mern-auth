@@ -1,11 +1,11 @@
 import {Link,useNavigate} from 'react-router-dom';
 import React from 'react';
-import { signInStart,signInSuccess,signInFailure } from '../redux/user/userSlice';
+import {signInStart,signInSuccess,signInFailure} from '../redux/user/userSlice';
 import{useDispatch, useSelector} from 'react-redux';
 
 
 export default function SignIn() {
-  const[formData,setFormData] = React.useState({email:'',password:''});
+  const[formData,setFormData] = React.useState({});
   // const [error,setError] = React.useState(false);
   const {loading,error} = useSelector((state)=>state.user);
   // const [loading,setLoading] = React.useState(false);
@@ -36,7 +36,7 @@ export default function SignIn() {
       // setLoading(false);
       if(data.success===false){
         // setError(true);
-        dispatch(signInFailure(data.message));
+        dispatch(signInFailure(data));
 
         return;
       }
@@ -44,7 +44,7 @@ export default function SignIn() {
       navigate('/')
     }catch(error){
       dispatch(signInFailure(error));
-      // console.log(error.message);
+      console.log(error.message);
     }
   };
 
@@ -62,7 +62,7 @@ export default function SignIn() {
         <span className='text-blue-500'>sign up</span>
         </Link>
       </div>
-      <p className='text-red-700 mt-5'>{error ? error || 'Something went wrong' : ''}</p>
+      <p className='text-red-700 mt-5'>{error ? error.message || 'Something went wrong' : ''}</p>
     </div>
   )
 }
