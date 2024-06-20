@@ -16,7 +16,7 @@ export default function SignUp() {
       setLoading(true);
       setError(false);
 
-      const res = await fetch('/api/auth/signup',{
+      const res = await fetch('/api/auth/SignUp',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export default function SignUp() {
         setError(true);
         return;
       }
-      navigate('/signin')
+      navigate('/SignIn')
     }catch(error){
       setLoading(false);
       setError(true)
