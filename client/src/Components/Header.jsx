@@ -31,6 +31,11 @@ export default function Header() {
           )}
             </Link>
 
+            <Link to='/Profile'>
+           <li>profile </li>
+           </Link>
+            
+
         </ul>
       </div>
     </div>

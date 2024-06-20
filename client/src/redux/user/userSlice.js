@@ -9,19 +9,30 @@ const initialState={
 };
 
 const userSlice = createSlice({
+    // name: 'user',
+    // initialState:{
+    //     loading:false,
+    //     error:null,
+    // },
+    // reducers: {
+    //   signInStart(state) {
+    //     state.loading = true;
+    //     state.error = null;
+    //   },
+    //   signInSuccess(state, action) {
+    //     state.loading = false;
+    //     state.user = action.payload;
+    //   },
     name: 'user',
-    initialState:{
-        loading:false,
-        error:null,
-    },
+    initialState,
     reducers: {
-      signInStart(state) {
+      signInStart: (state) => {
         state.loading = true;
-        state.error = null;
       },
-      signInSuccess(state, action) {
+      signInSuccess: (state, action) => {
+        state.currentUser = action.payload;
         state.loading = false;
-        state.user = action.payload;
+        state.error = false;
       },
       signInFailure(state, action) {
         state.loading = false;
