@@ -17,14 +17,11 @@ export default function SignIn() {
   }
   console.log(formData);
 
-  const handleSubmit = async(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
+    try {
       dispatch(signInStart());
-      // setLoading(true);
-      // setError(false);
-
-      const res = await fetch('/api/auth/SignIn',{
+      const res = await fetch('/api/auth/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -32,19 +29,14 @@ export default function SignIn() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(data)
-      // setLoading(false);
-      if(data.success===false){
-        // setError(true);
+      if (data.success === false) {
         dispatch(signInFailure(data));
-
         return;
       }
       dispatch(signInSuccess(data));
-      navigate('/')
-    }catch(error){
+      navigate('/');
+    } catch (error) {
       dispatch(signInFailure(error));
-      console.log(error.message);
     }
   };
 
